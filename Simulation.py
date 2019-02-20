@@ -1,24 +1,35 @@
 import pandas as pd,math,random
 
-experiment_count = 5 #Number of experimental iterations
+experiment_count = 15 #Number of experimental iterations
+
 common_repeats_results = [] #List of common repeats
-lone_repeats_results = [] #List of maximum lone repeats
+lone_repeats_results = [] #List of lone repeats
+
 digits = 3
 total_digit_sums = 9 * digits
 
 #Starts with random input, enforces game rules to give final output
 for i in range(experiment_count):
-    num_count = random.randint(1,161)
+    #Generates the number of 3-digit numbers to be used
+    num_count = random.randint(0,161)
 
+    #Calculates common repeats by rounding down in division to find common repeats then calculating the remainder, or number of lone repeats
     common_repeats = math.floor(num_count / total_digit_sums)
     lone_repeats = num_count % total_digit_sums
 
+    #Adds results to appropriate lists
     common_repeats_results.append(common_repeats)
     lone_repeats_results.append(lone_repeats)
 
+    #Prints results
     print("Numbers =", num_count)
     print (common_repeats_results[i], ":", lone_repeats_results[i])
 
+#Prints result lists
+print (common_repeats_results)
+print (lone_repeats_results)
+
+print(str(len(common_repeats_results)))
 
 #Compiles results into two-column dataframe to be written to Excel spreadsheet
 ########
